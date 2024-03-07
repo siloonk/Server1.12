@@ -15,6 +15,5 @@ public class HandshakingPacketListener implements PacketListener<HandshakingPack
         client.setProtocolVersion(packet.getProtocolVersion());
         if (packet.getNextState() == 1) client.setState(GameState.STATUS);
         else client.setState(GameState.LOGIN);
-        System.out.println(packet.getProtocolVersion());
     }
 }

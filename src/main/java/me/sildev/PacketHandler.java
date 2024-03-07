@@ -3,7 +3,17 @@ package me.sildev;
 import me.sildev.packets.Packet;
 import me.sildev.packets.PacketListener;
 import me.sildev.packets.listener.HandshakingPacketListener;
+import me.sildev.packets.listener.login.ClientLoginStartPacketListener;
+import me.sildev.packets.listener.play.ClientKeepAlivePacketListener;
+import me.sildev.packets.listener.play.PlayerPositionPacketListener;
+import me.sildev.packets.listener.status.StatusPingPacketListener;
+import me.sildev.packets.listener.status.StatusRequestPacketListener;
 import me.sildev.packets.serverbound.HandshakingPacket;
+import me.sildev.packets.serverbound.login.ClientLoginStartPacket;
+import me.sildev.packets.serverbound.play.ClientKeepAlivePacket;
+import me.sildev.packets.serverbound.play.PlayerPositionPacket;
+import me.sildev.packets.serverbound.status.StatusPingRequestPacket;
+import me.sildev.packets.serverbound.status.StatusRequestPacket;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,5 +49,23 @@ public class PacketHandler {
 
     public static void registerAllPacketListeners() {
         register(HandshakingPacket.class, new HandshakingPacketListener());
+
+        /*
+                Status packets
+         */
+        register(StatusRequestPacket.class, new StatusRequestPacketListener());
+        register(StatusPingRequestPacket.class, new StatusPingPacketListener());
+
+        /*
+                Login Packets
+         */
+        register(ClientLoginStartPacket.class, new ClientLoginStartPacketListener());
+
+        /*
+                Play Packets
+         */
+        register(PlayerPositionPacket.class, new PlayerPositionPacketListener());
+        register(ClientKeepAlivePacket.class, new ClientKeepAlivePacketListener());
+
     }
 }

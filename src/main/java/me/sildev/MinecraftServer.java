@@ -11,10 +11,10 @@ public class MinecraftServer implements AutoCloseable {
     /*
         Server constants
      */
-    public static final int PROTOCOL_VERISON = 765;
+    public static final int PROTOCOL_VERSION = 340;
     public static final int MAX_PLAYERS = 2024;
-    public static final String VERSION_NAME = "JAVServer 1.20.4";
-    public static final String MOTD = "§aA JAVServer on version 1.20.4!";
+    public static final String VERSION_NAME = "JAVServer 1.12.2";
+    public static final String MOTD = "§aA JAVServer on version 1.12.2!";
 
 
     ArrayList<ClientHandler> clients = new ArrayList<>();

@@ -16,7 +16,7 @@ public class Packet {
      * @param data
      * @throws IOException
      */
-    protected Packet(byte[] data) throws IOException {
+    public Packet(byte[] data) throws IOException {
         wrapper.write(data);
         wrapper.flush();
     }
@@ -25,7 +25,7 @@ public class Packet {
      * A constructor for outgoing packets
      * @param id
      */
-    protected Packet(int id) throws IOException {
+    public Packet(int id) throws IOException {
         DataTypes.writeVarInt(wrapper, id);
     }
 

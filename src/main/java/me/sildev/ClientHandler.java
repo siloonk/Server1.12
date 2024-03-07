@@ -3,6 +3,7 @@ package me.sildev;
 import me.sildev.data.Player;
 import me.sildev.packets.Packet;
 import me.sildev.packets.PacketRegistry;
+import me.sildev.packets.clientbound.play.KeepAlivePacket;
 import me.sildev.utils.DataTypes;
 import me.sildev.utils.GameState;
 
@@ -48,7 +49,6 @@ public class ClientHandler implements Runnable {
 
                 Class<? extends Packet> packetClass = PacketRegistry.get(state, packetID);
                 if (packetClass == null) continue;
-                System.out.println(packetClass);
                 try {
                     Packet packet = packetClass.getConstructor(byte[].class).newInstance(data);
                     handler.handle(packet);
@@ -56,7 +56,6 @@ public class ClientHandler implements Runnable {
                          NoSuchMethodException e) {
                     throw new IOException(e);
                 }
-
             } catch (IOException e) {
                 return;
             }
