@@ -84,7 +84,7 @@ public class DataTypes {
             value >>>= 7;
         }
     }
-    public void writeVarLong(OutputStream out, long value) throws IOException {
+    public static void writeVarLong(OutputStream out, long value) throws IOException {
         while (true) {
             if ((value & ~((long) SEGMENT_BITS)) == 0) {
                 out.write((int) value);

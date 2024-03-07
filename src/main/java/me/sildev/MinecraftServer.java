@@ -1,5 +1,7 @@
 package me.sildev;
 
+import me.sildev.world.World;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -19,6 +21,8 @@ public class MinecraftServer implements AutoCloseable {
 
     ArrayList<ClientHandler> clients = new ArrayList<>();
 
+    World world;
+
     ServerSocket server;
 
     public MinecraftServer(String ip, int port) throws IOException {
@@ -27,6 +31,7 @@ public class MinecraftServer implements AutoCloseable {
         System.out.println("Registering all incoming packets...");
         PacketHandler.registerAllPacketListeners();
         System.out.println("Registered all incoming packets!");
+        world = World.createWorld();
     }
 
     public void run() throws IOException {
@@ -54,6 +59,10 @@ public class MinecraftServer implements AutoCloseable {
 
     public void removeClient(ClientHandler client) {
         this.clients.remove(client);
+    }
+
+    public World getWorld() {
+        return world;
     }
 
     @Override
